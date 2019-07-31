@@ -11,7 +11,17 @@ import java.util.concurrent.TimeUnit
 
 class AwesomeViewModel(application: Application) : AndroidViewModel(application) {
 
-    
+    private val database = AwesomeDatabase
+        .getInstance(application)
+        .awesomeDao
+
+    val messages = database
+        .getMessagesOfDate(getToday())
+
+    private fun getToday(): String {
+
+        return DateFormat.getDateInstance().format(Date())
+    }
 
     init {
         val workManager = WorkManager.getInstance()
