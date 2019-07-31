@@ -1,7 +1,8 @@
 package com.techspark.iawesome
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 
-class AwesomeViewModel : ViewModel() {
+class AwesomeViewModel(application: Application) : AndroidViewModel(application) {
     // TODO: Implement the ViewModel
 }
