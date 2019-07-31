@@ -1,19 +1,28 @@
 package com.techspark.iawesome
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
+import android.os.Build
+import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import androidx.core.app.NotificationCompat
-import android.app.NotificationManager
-import android.app.NotificationChannel
-import android.os.Build
-
+import com.techspark.iawesome.database.AwesomeDatabase
+import com.techspark.iawesome.database.AwesomeModel
+import java.text.DateFormat
+import java.util.*
 
 
 class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams){
 
     override fun doWork(): Result {
-        
+
+        val awesomeModel = AwesomeModel()
+        awesomeModel.msg = "Whatever"
+        awesomeModel.date = DateFormat.getDateInstance().format(Date())
+        awesomeModel.time = DateFormat.getTimeInstance().format(Date())
+        AwesomeDatabase.getInstance(applicationContext).awesomeDao.insert(awesomeModel)
+        showNotification("Insert", awesomeModel.date +"---"+awesomeModel.time)
         return Result.success()
     }
 
