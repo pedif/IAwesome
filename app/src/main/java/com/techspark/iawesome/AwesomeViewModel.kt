@@ -23,9 +23,4 @@ class AwesomeViewModel(application: Application) : AndroidViewModel(application)
         return DateFormat.getDateInstance().format(Date())
     }
 
-    init {
-        val workManager = WorkManager.getInstance()
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(AwesomeWorker::class.java, 60, TimeUnit.SECONDS).build()
-        workManager.enqueue(periodicWorkRequest)
-    }
 }
