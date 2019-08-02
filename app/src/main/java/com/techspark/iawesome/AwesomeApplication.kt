@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
+import com.techspark.iawesome.workers.AwesomeWorker
 import java.util.concurrent.TimeUnit
 
 class AwesomeApplication : Application() {
