@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.techspark.iawesome.database.AwesomeModel
 import com.techspark.iawesome.view.AwesomeRecyclerAdapter
 import kotlinx.android.synthetic.main.awesome_fragment.*
@@ -26,6 +29,8 @@ class AwesomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.awesome_fragment, container, false)
+
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -37,5 +42,12 @@ class AwesomeFragment : Fragment() {
         })
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val manager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
+        awesome_list.layoutManager = manager
+        awesome_list.addItemDecoration(DividerItemDecoration(activity,
+            manager.orientation))
+    }
 
 }
