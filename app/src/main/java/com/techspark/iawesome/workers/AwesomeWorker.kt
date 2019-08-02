@@ -1,12 +1,14 @@
-package com.techspark.iawesome
+package com.techspark.iawesome.workers
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
+import android.preference.PreferenceManager
 import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.techspark.iawesome.R
 import com.techspark.iawesome.database.AwesomeDatabase
 import com.techspark.iawesome.database.AwesomeModel
 import java.text.DateFormat
@@ -17,17 +19,36 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
 
     override fun doWork(): Result {
 
+        //Don't do anything if gender hasn't been set yet
+        if (!PreferenceManager.getDefaultSharedPreferences(applicationContext).contains("gender"))
+            return Result.success()
+
+
+        val awesomeModel = addNewMessage()
+        showNotification("Insert", awesomeModel.date +"---"+awesomeModel.time)
+        return Result.success()
+    }
+
+    /**
+     * Inserts a new message to the database with current date and time
+     */
+    private fun addNewMessage(): AwesomeModel {
         val awesomeModel = AwesomeModel()
         awesomeModel.msg = "Whatever"
         awesomeModel.date = DateFormat.getDateInstance().format(Date())
         awesomeModel.time = DateFormat.getTimeInstance().format(Date())
         AwesomeDatabase.getInstance(applicationContext).awesomeDao.insert(awesomeModel)
-        showNotification("Insert", awesomeModel.date +"---"+awesomeModel.time)
-        return Result.success()
+        return  awesomeModel
     }
 
 
+    /**
+     * Displays or updates app notification with new message
+     */
     private fun showNotification(task: String, desc: String) {
+
+        if(!PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("notification",true))
+            return
 
         val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
