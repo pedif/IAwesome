@@ -1,5 +1,5 @@
 <resources>
-    <!-- Reply Preference -->
+
     <string-array name="gender_entries">
         <item>Male</item>
         <item>Female</item>
@@ -9,4 +9,84 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="messages_full_male">
+        <item>Someone is looking hot today!</item>
+        <item>You are my one and only. My beginning and the end. The sun in my days and the moon in my nights.</item>
+        <item>I wanted to tell you that I love you no matter what.</item>
+        <item>Hang in there you got this.</item>
+        <item>Confidence is the key and you got a butt load of it.</item>
+        <item>The weather was 4 degrees warmer today. Did you wear that shirt again?</item>
+        <item>Oh my god that shirt? Again?! Come one, we talked about this. You in that shirt is one the reasons global
+            warming is a thing now.
+        </item>
+        <item>The word luxury is defined by my man right here.</item>
+        <item>You have just created a new definition for the word handsome with that outfit.</item>
+        <item>That tie, those shoes, that watch; some women are going to have a hard time sleeping tonight.</item>
+        <item>Take care of that body because that form is worth a million bucks maybe more.</item>
+        <item>You can make it and you will.</item>
+        <item>Do you hit the gym or do you look like that naturally because damn!</item>
+        <item>You are going to get it today.</item>
+        <item>Success is your middle name.</item>
+    </string-array>
+
+    <string-array name="messages_full_female">
+        <item>Someone is looking hot today!</item>
+        <item>You are my one and only. My beginning and the end. The Sun in my days and the Moon in my nights.</item>
+        <item>I wanted to tell you that I love you no matter what.</item>
+        <item>Hang in there you got this.</item>
+        <item>Hotness is the sauce and you have bathed in it last night.</item>
+        <item>I saw a massacre on news today,
+            I checked it out and found out all the victims were men and it was in the way you were going to work and we both know who the reason was!</item>
+        <item>The weather was 4 degrees warmer today. Did you wear that dress again?</item>
+        <item>Oh my god that dress? Again?! Come one, we talked about this. You in that dress is one the reasons global warming is a thing now.</item>
+        <item>They say hot damn and I recall your today’s look.</item>
+        <item>You have just created a new definition for the word beautiful with that outfit.</item>
+        <item>Sweet lord and savior that dress is working wonders with those shoes.</item>
+        <item>Take care of that body because that form is worth a million bucks maybe more.</item>
+        <item>You can make it and you will.</item>
+        <item>Do you hit the gym or do you look like that naturally because damn!</item>
+        <item>You are going to get it today.</item>
+        <item>They could serve you at Mastro's Ocean Club because you look delicious and fancy today!</item>
+    </string-array>
+
+    <string-array name="messages_placeholder">
+        <item>Good morning %1$s</item>
+        <item>Sweet dreams %1$s</item>
+        <item>Hey %1$s</item>
+        <item>Keep it up %1$s. You got this</item>
+        <item>How is %1$s today?</item>
+        <item>Where is %1$s right now?</item>
+        <item>I miss my %1$s :(</item>
+    </string-array>
+
+    <string-array name="messages_post_phrase_male">
+        <item>My lord</item>
+        <item>My king</item>
+        <item>My God</item>
+        <item>Your highness</item>
+        <item>Handsome</item>
+        <item>The chosen one</item>
+        <item>My model</item>
+        <item>My Ryan Gosling</item>
+        <item>My man</item>
+        <item>Hot stuff</item>
+        <item>My Bacon</item>
+        <item>My Rock</item>
+    </string-array>
+
+    <string-array name="messages_post_phrase_female">
+        <item>My queen</item>
+        <item>My Goddess</item>
+        <item>Your highness</item>
+        <item>Beautiful</item>
+        <item>The chosen one</item>
+        <item>My model</item>
+        <item>My Margot Robbie</item>
+        <item>Girl</item>
+        <item>Hot stuff</item>
+        <item>My Cupcake</item>
+        <item>My Barbie</item>
+    </string-array>
+
 </resources>
