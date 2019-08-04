@@ -6,6 +6,7 @@ import androidx.core.content.edit
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
+import com.techspark.iawesome.util.AwesomeNotification
 import com.techspark.iawesome.workers.AwesomeWorker
 import java.util.concurrent.TimeUnit
 
