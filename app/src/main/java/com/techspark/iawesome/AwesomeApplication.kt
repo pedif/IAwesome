@@ -1,6 +1,8 @@
 package com.techspark.iawesome
 
 import android.app.Application
+import android.preference.PreferenceManager
+import androidx.core.content.edit
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
@@ -9,14 +11,29 @@ import java.util.concurrent.TimeUnit
 
 class AwesomeApplication : Application() {
 
+    private val FIRST_TIME_KEY = "first_time"
     private val workTag = "AwesomeWork"
     override fun onCreate() {
         super.onCreate()
 
-        startWorkManager()
+
+        checkIfFirstTime()
+        startPeriodicWork()
     }
 
-    private fun startWorkManager() {
+    private fun checkIfFirstTime() {
+        val pref = PreferenceManager.getDefaultSharedPreferences(this)
+        if (pref.getBoolean(FIRST_TIME_KEY, true)) {
+            pref.edit {
+                putBoolean(FIRST_TIME_KEY, false)
+                    .commit() }
+            AwesomeNotification.showNotification(this,"","")
+        }
+    }
+
+
+
+    private fun startPeriodicWork() {
         val workManager = WorkManager.getInstance()
         val periodicWorkRequest = PeriodicWorkRequest.Builder(AwesomeWorker::class.java, 6, TimeUnit.HOURS).build()
         workManager.enqueueUniquePeriodicWork(workTag, ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest)
