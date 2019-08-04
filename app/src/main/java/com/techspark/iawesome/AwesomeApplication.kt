@@ -12,7 +12,9 @@ import java.util.concurrent.TimeUnit
 
 class AwesomeApplication : Application() {
 
-    private val FIRST_TIME_KEY = "first_time"
+    companion object {
+        const val FIRST_TIME_KEY = "first_time"
+    }
     private val workTag = "AwesomeWork"
     override fun onCreate() {
         super.onCreate()
