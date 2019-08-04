@@ -13,8 +13,13 @@ class AwesomeApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        startWorkManager()
+    }
+
+    private fun startWorkManager() {
         val workManager = WorkManager.getInstance()
-        val periodicWorkRequest = PeriodicWorkRequest.Builder(AwesomeWorker::class.java, 60, TimeUnit.SECONDS).build()
+        val periodicWorkRequest = PeriodicWorkRequest.Builder(AwesomeWorker::class.java, 6, TimeUnit.HOURS).build()
         workManager.enqueueUniquePeriodicWork(workTag, ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest)
     }
+
 }
