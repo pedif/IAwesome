@@ -16,7 +16,6 @@ class AwesomeApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-
         checkIfFirstTime()
         startPeriodicWork()
     }
@@ -27,7 +26,8 @@ class AwesomeApplication : Application() {
             pref.edit {
                 putBoolean(FIRST_TIME_KEY, false)
                     .commit() }
-            AwesomeNotification.showNotification(this,"","")
+            AwesomeNotification.showNotification(this,resources.getString(R.string.welcome_title)
+                ,resources.getString(R.string.welcome_message))
         }
     }
 
