@@ -60,7 +60,7 @@
         <item>I miss my %1$s :(</item>
     </string-array>
 
-    <string-array name="messages_post_phrase_male">
+    <string-array name="messages_subject_male">
         <item>My lord</item>
         <item>My king</item>
         <item>My God</item>
@@ -75,7 +75,7 @@
         <item>My Rock</item>
     </string-array>
 
-    <string-array name="messages_post_phrase_female">
+    <string-array name="messages_subject_female">
         <item>My queen</item>
         <item>My Goddess</item>
         <item>Your highness</item>
