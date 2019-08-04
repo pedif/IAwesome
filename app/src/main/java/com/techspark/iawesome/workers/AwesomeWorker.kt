@@ -23,10 +23,24 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
         if (!PreferenceManager.getDefaultSharedPreferences(applicationContext).contains("gender"))
             return Result.success()
 
+        if(isPastNightTime())
+            return Result.success()
 
         val awesomeModel = addNewMessage()
         showNotification("Insert", awesomeModel.date +"---"+awesomeModel.time)
         return Result.success()
+    }
+
+    /**
+     * Checks the hour to see if it's night time
+     * we don't want to show an awesome message if it's night time
+     */
+    private fun isPastNightTime(): Boolean {
+
+        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        if(hour in 6..22)
+            return false
+        return true
     }
 
     /**
