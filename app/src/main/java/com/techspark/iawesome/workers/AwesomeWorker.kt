@@ -1,61 +1,112 @@
 package com.techspark.iawesome.workers
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.content.Context
-import android.os.Build
 import android.preference.PreferenceManager
-import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.techspark.iawesome.AwesomeNotification
 import com.techspark.iawesome.R
+import com.techspark.iawesome.util.AwesomeNotification
 import com.techspark.iawesome.database.AwesomeDatabase
 import com.techspark.iawesome.database.AwesomeModel
-import java.text.DateFormat
-import java.util.*
+import com.techspark.iawesome.util.AwesomeTime
+import kotlin.random.Random
 
 
-class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams){
+class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
+
+    companion object {
+        const val GENDER_KEY = "gender"
+    }
 
     override fun doWork(): Result {
 
         //Don't do anything if gender hasn't been set yet
-        if (!PreferenceManager.getDefaultSharedPreferences(applicationContext).contains("gender"))
+        if (!PreferenceManager.getDefaultSharedPreferences(applicationContext).contains(GENDER_KEY))
             return Result.success()
 
-        if(isPastNightTime())
+        //Don't do anything if it's past night time
+        if (AwesomeTime.getTime() == AwesomeTime.NIGHTTIME)
             return Result.success()
 
         val awesomeModel = addNewMessage()
-         AwesomeNotification.showNotification(applicationContext, "Insert", awesomeModel.date +"---"+awesomeModel.time)
+        AwesomeNotification.showNotification(
+            applicationContext,
+            "Insert",
+            awesomeModel.date + "---" + awesomeModel.time
+        )
         return Result.success()
     }
 
-    /**
-     * Checks the hour to see if it's night time
-     * we don't want to show an awesome message if it's night time
-     */
-    private fun isPastNightTime(): Boolean {
-
-        val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        if(hour in 6..22)
-            return false
-        return true
-    }
 
     /**
      * Inserts a new message to the database with current date and time
      */
     private fun addNewMessage(): AwesomeModel {
         val awesomeModel = AwesomeModel()
-        awesomeModel.msg = "Whatever"
-        awesomeModel.date = DateFormat.getDateInstance().format(Date())
-        awesomeModel.time = DateFormat.getTimeInstance().format(Date())
+        awesomeModel.msg = getRandomMessage()
         AwesomeDatabase.getInstance(applicationContext).awesomeDao.insert(awesomeModel)
-        return  awesomeModel
+        return awesomeModel
     }
 
+    /**
+     * Generates Random message based on time of day
+     */
+    private fun getRandomMessage(): String {
+
+        val time = AwesomeTime.getTime()
+
+        //For morning or evenings we have fixed messages
+        if (time == AwesomeTime.MORNING || time == AwesomeTime.EVENING)
+            return getPlaceholderMessage(time)
+
+        //Otherwise either show a full messages or a placeholder message randomly
+        if (Random.nextBoolean())
+            return getFullMessage()
+
+        return getPlaceholderMessage(time)
+
+
+    }
+
+    /**
+     * Generates a random message based on gender
+     */
+    private fun getFullMessage(): String {
+        val gender = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(GENDER_KEY, "")
+        val messageArray =
+            if (gender == "male") applicationContext.resources.getStringArray(R.array.messages_full_male)
+            else applicationContext.resources.getStringArray(R.array.messages_full_female)
+
+        return messageArray[Random.nextInt(messageArray.size)]
+    }
+
+    /**
+     * Generate a random message based on gender and @param time
+     *
+     */
+    private fun getPlaceholderMessage(time: AwesomeTime): String {
+        val res = applicationContext.resources
+        val placeHolderArray = res.getStringArray(R.array.messages_placeholder)
+        val gender = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(GENDER_KEY, "")
+        val subjectArray =
+            if (gender == "male") res.getStringArray(R.array.messages_subject_male) else res.getStringArray(R.array.messages_subject_female)
+
+
+        return when (time) {
+
+            //fixed message for mornings
+            AwesomeTime.MORNING -> String.format(placeHolderArray[0], subjectArray[Random.nextInt(subjectArray.size)])
+
+            //fixed message for evenings
+            AwesomeTime.EVENING -> String.format(placeHolderArray[1], subjectArray[Random.nextInt(subjectArray.size)])
+
+            else -> String.format(
+                placeHolderArray[Random.nextInt(2, placeHolderArray.size)],
+                subjectArray[Random.nextInt(subjectArray.size)]
+            )
+        }
+
+    }
 
 
 }
