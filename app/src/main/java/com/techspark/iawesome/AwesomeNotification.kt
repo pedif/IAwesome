@@ -13,7 +13,7 @@ class AwesomeNotification {
      * Displays or updates app notification with new message
      */
     companion object {
-        fun showNotification(context: Context, task: String, desc: String) {
+        fun showNotification(context: Context, title: String, message: String) {
 
             if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean("notification", true))
                 return
@@ -31,8 +31,8 @@ class AwesomeNotification {
             }
 
             val builder = NotificationCompat.Builder(context, channelId)
-                .setContentTitle(task)
-                .setContentText(desc)
+                .setContentTitle(title)
+                .setContentText(message)
                 .setSmallIcon(R.mipmap.ic_launcher)
 
             manager.notify(1, builder.build())
