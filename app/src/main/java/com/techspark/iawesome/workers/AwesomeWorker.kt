@@ -8,6 +8,7 @@ import android.preference.PreferenceManager
 import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.techspark.iawesome.AwesomeNotification
 import com.techspark.iawesome.R
 import com.techspark.iawesome.database.AwesomeDatabase
 import com.techspark.iawesome.database.AwesomeModel
@@ -27,7 +28,7 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
             return Result.success()
 
         val awesomeModel = addNewMessage()
-        showNotification("Insert", awesomeModel.date +"---"+awesomeModel.time)
+         AwesomeNotification.showNotification(applicationContext, "Insert", awesomeModel.date +"---"+awesomeModel.time)
         return Result.success()
     }
 
@@ -56,32 +57,5 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
     }
 
 
-    /**
-     * Displays or updates app notification with new message
-     */
-    private fun showNotification(task: String, desc: String) {
 
-        if(!PreferenceManager.getDefaultSharedPreferences(applicationContext).getBoolean("notification",true))
-            return
-
-        val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-
-        val channelId = "task_channel"
-        val channelName = "task_name"
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
-            manager.createNotificationChannel(channel)
-        }
-
-        val builder = NotificationCompat.Builder(applicationContext, channelId)
-            .setContentTitle(task)
-            .setContentText(desc)
-            .setSmallIcon(R.mipmap.ic_launcher)
-
-        manager.notify(1, builder.build())
-
-    }
 }
