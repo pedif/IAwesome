@@ -34,7 +34,7 @@ class AwesomeNotification {
             val builder = NotificationCompat.Builder(context, channelId)
                 .setContentTitle(title)
                 .setContentText(message)
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.drawable.ic_notif)
 
             manager.notify(1, builder.build())
 
