@@ -24,7 +24,7 @@ class AwesomeRecyclerAdapter(private var items: List<AwesomeModel>) : RecyclerVi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        holder.itemView.item_awesome_text.text = items[position].date + "----"+ items[position].time
+        holder.itemView.item_awesome_text.text = items[position].msg
     }
 
 }
