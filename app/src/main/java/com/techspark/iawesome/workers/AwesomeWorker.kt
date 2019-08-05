@@ -31,8 +31,8 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
         val awesomeModel = addNewMessage()
         AwesomeNotification.showNotification(
             applicationContext,
-            "Insert",
-            awesomeModel.date + "---" + awesomeModel.time
+            "IAwesome",
+           awesomeModel.msg
         )
         return Result.success()
     }
