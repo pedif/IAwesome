@@ -57,36 +57,36 @@
         <item>Keep it up %1$s. You got this</item>
         <item>How is %1$s today?</item>
         <item>Where is %1$s right now?</item>
-        <item>I miss my %1$s :(</item>
+        <item>I miss %1$s :(</item>
     </string-array>
 
     <string-array name="messages_subject_male">
-        <item>My lord</item>
-        <item>My king</item>
-        <item>My God</item>
-        <item>Your highness</item>
-        <item>Handsome</item>
-        <item>The chosen one</item>
-        <item>My model</item>
-        <item>My Ryan Gosling</item>
-        <item>My man</item>
-        <item>Hot stuff</item>
-        <item>My Bacon</item>
-        <item>My Rock</item>
+        <item>my lord</item>
+        <item>my king</item>
+        <item>my God</item>
+        <item>your highness</item>
+        <item>handsome</item>
+        <item>the chosen one</item>
+        <item>my model</item>
+        <item>my Ryan Gosling</item>
+        <item>my man</item>
+        <item>hot stuff</item>
+        <item>my Bacon</item>
+        <item>my Rock</item>
     </string-array>
 
     <string-array name="messages_subject_female">
-        <item>My queen</item>
-        <item>My Goddess</item>
-        <item>Your highness</item>
-        <item>Beautiful</item>
-        <item>The chosen one</item>
-        <item>My model</item>
-        <item>My Margot Robbie</item>
-        <item>Girl</item>
-        <item>Hot stuff</item>
-        <item>My Cupcake</item>
-        <item>My Barbie</item>
+        <item>my queen</item>
+        <item>my Goddess</item>
+        <item>your highness</item>
+        <item>beautiful</item>
+        <item>the chosen one</item>
+        <item>my model</item>
+        <item>my Margot Robbie</item>
+        <item>girl</item>
+        <item>hot stuff</item>
+        <item>my Cupcake</item>
+        <item>my Barbie</item>
     </string-array>
 
 </resources>
