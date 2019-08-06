@@ -9,6 +9,6 @@
     <!-- Sync Preferences -->
     <string name="notification_title">Display notification</string>
 
-    <string name="welcome_title">Welcome</string>
-    <string name="welcome_message">IAwesome would display messages here</string>
+    <string name="welcome_title">Welcome Awesomeness</string>
+    <string name="welcome_message">I would display messages through here</string>
 </resources>
