@@ -2,10 +2,13 @@ package com.techspark.iawesome.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.preference.PreferenceManager
 import androidx.core.app.NotificationCompat
+import com.techspark.iawesome.MainActivity
 import com.techspark.iawesome.R
 
 class AwesomeNotification {
@@ -35,6 +38,8 @@ class AwesomeNotification {
                 .setContentTitle(title)
                 .setContentText(message)
                 .setSmallIcon(R.drawable.ic_notif)
+                .setAutoCancel(true)
+                .setContentIntent(PendingIntent.getActivity(context,1, Intent(context,MainActivity::class.java),PendingIntent.FLAG_UPDATE_CURRENT))
 
             manager.notify(1, builder.build())
 
