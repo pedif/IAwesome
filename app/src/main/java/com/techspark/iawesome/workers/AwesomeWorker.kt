@@ -74,7 +74,7 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
     private fun getFullMessage(): String {
         val gender = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(GENDER_KEY, "")
         val messageArray =
-            if (gender == "male") applicationContext.resources.getStringArray(R.array.messages_full_male)
+            if (gender == "Male") applicationContext.resources.getStringArray(R.array.messages_full_male)
             else applicationContext.resources.getStringArray(R.array.messages_full_female)
 
         return messageArray[Random.nextInt(messageArray.size)]
@@ -89,7 +89,7 @@ class AwesomeWorker(context: Context, workerParams: WorkerParameters) : Worker(c
         val placeHolderArray = res.getStringArray(R.array.messages_placeholder)
         val gender = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(GENDER_KEY, "")
         val subjectArray =
-            if (gender == "male") res.getStringArray(R.array.messages_subject_male) else res.getStringArray(R.array.messages_subject_female)
+            if (gender == "Male") res.getStringArray(R.array.messages_subject_male) else res.getStringArray(R.array.messages_subject_female)
 
 
         return when (time) {
